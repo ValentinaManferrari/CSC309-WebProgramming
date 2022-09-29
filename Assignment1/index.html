@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>CSC309 Personal Website</title>
+  <style type="text/css">
+    .row { vertical-align: top; height:auto !important; }
+    .content {display:none; }
+    .show {display: none; }
+    .hide:target + .show {display: inline; }
+    .hide:target {display: none; }
+    .hide:target ~ .content {display:inline; }
+    @media print { .hide, .show { display: none; } }
+  </style>
+</head>
+<body>    
+  <header></header>
+
+    <div>Hello Visitors!</div>
+    <h1>Name: Valentina Manferrari</h1>
+    <h2>UtorID: manferra</h2>
+
+    <ul>
+      <li>A1 is worth 10%.</li>
+      <li>A2 is worth 20%.</li>
+      <li>A3 is worth 15%.</li>
+    </ul>
+    <br>
+
+    <div class="row">
+        <a href="#hide1" class="hide" id="hide1">Fact</a>
+        <a href="#show1" class="show" id="show1">Fact</a>
+        <div class="content">
+        <p>I'm <b>a</b> <del>robot</del> <u>human</u>!</p>
+        </div>
+    </div>
+    <br>
+
+    <table>
+      <tr>
+        <th>Course</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Assignments</th>
+      </tr>
+      <tr>
+        <td>CSC309</td>
+        <td>2022</td>
+        <td>Fall</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>CSC209</td>
+        <td>2022</td>
+        <td>Summer</td>
+        <td>2</td>
+      </tr>
+      <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+    </table>
+    <br>
+
+    <form action="https://csc309.teach.cs.toronto.edu/a1/submit/" method="post">
+      
+        <label for="feedback">Feedback</label><br>
+        <textarea id="feedback" name="feedback" rows="4" cols="50">Enter your feedback here</textarea><br>
+        
+        <label for="email">Email</label><br>
+        <input type="text" id="email" name="email" ><br>
+        
+        <label for="attachments">Attachment</label>
+        <input type="file" id="attachments" name="attachments" ><br>
+
+        <input type="checkbox" id="consent" name="consent">
+        <label for="consent">You agree to receive emails from me</label><br>
+
+        <input type="submit" value="Send Feedback"><br>
+    </form>
+
+    <iframe src="https://csc309.teach.cs.toronto.edu/a1/20211_CSC309H5S_LEC9102.pdf" width="100%" height="500px"></iframe>
+
+  <footer>
+    <a href="mailto:valentina.manferrari@mail.utoronto.ca?subject=Bug Found&body=I found the following bug on your website" target="_blank">valentina.manferrari@mail.utoronto.ca</a>
+  </footer>
+</body>
+</html>
