@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>CSC309 Personal Website</title>
 </head>
@@ -10,74 +10,83 @@
 <body>
   <header></header>
 
-  <div>Hello Visitors!</div>
-  <h1>Name: Valentina Manferrari</h1>
-  <h2>UtorID: manferra</h2>
+  <div class="hello">Hello Visitors!</div>
 
-  <ul>
-    <li>A1 is worth 10%.</li>
-    <li>A2 is worth 20%.</li>
-    <li>A3 is worth 15%.</li>
-  </ul>
-  <br>
+  <div class="row">
+    <div class="column">
+      <h1>Valentina Manferrari</h1>
+      <h2>manferra</h2>
 
-  <details>
-    <summary>Fact</summary>
-    <p>I'm <b>a</b> <del>robot</del> <u>human</u>!</p>
-  </details>
-  <br>
+      <ul>
+        <li>A1 is worth 10%.</li>
+        <li>A2 is worth 20%.</li>
+        <li>A3 is worth 15%.</li>
+      </ul>
+      <br>
 
-  <table>
-    <tr>
-      <th>Course</th>
-      <th>Year</th>
-      <th>Semester</th>
-      <th>Assignments</th>
-    </tr>
-    <tr>
-      <td>CSC309</td>
-      <td>2022</td>
-      <td>Fall</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>CSC209</td>
-      <td>2022</td>
-      <td>Summer</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-  </table>
-  <br>
+      <details>
+        <summary>Fact</summary>
+        <p>I'm <b>a</b> <del>robot</del> <u>human</u>!</p>
+      </details>
+      <br>
 
-  <form action="https://csc309.teach.cs.toronto.edu/a1/submit/" method="post" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <th>Course</th>
+          <th>Year</th>
+          <th>Semester</th>
+          <th>Assignments</th>
+        </tr>
+        <tr>
+          <td>CSC309</td>
+          <td>2022</td>
+          <td>Fall</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>CSC209</td>
+          <td>2022</td>
+          <td>Summer</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </table>
+      <br>
 
-    <label for="feedback">Feedback</label><br>
-    <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Enter your feedback here" required></textarea><br>
+      <form action="https://csc309.teach.cs.toronto.edu/a1/submit/" method="post" enctype="multipart/form-data">
 
-    <label for="email">Email</label><br>
-    <input type="text" id="email" name="email" required><br>
+        <label for="feedback">Feedback</label>
+        <textarea id="feedback" name="feedback" placeholder="Enter your feedback here" required></textarea><br>
 
-    <label for="attachments">Attachment</label>
-    <input type="file" id="attachments" name="attachments" required><br>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required><br>
 
-    <input type="checkbox" id="consent" name="consent" value="yes" required>
-    <label for="consent">You agree to receive emails from me</label><br>
+        <label for="attachments">Attachment</label>
+        <input type="file" id="attachments" name="attachments" required><br>
 
-    <input type="submit" value="Send Feedback"><br>
-  </form>
+        <input type="checkbox" id="consent" name="consent" value="yes" required>
+        <label for="consent">You agree to receive emails from me</label><br>
 
-  <iframe src="https://csc309.teach.cs.toronto.edu/a1/20211_CSC309H5S_LEC9102.pdf" width="100%" height="500px"></iframe>
+        <input type="submit" value="Send Feedback"><br>
+      </form>
+    </div>
+
+    <div class="column">
+      <iframe src="https://csc309.teach.cs.toronto.edu/a1/20211_CSC309H5S_LEC9102.pdf" width="100%"
+        height="500px"></iframe>
+    </div>
+  </div>
 
   <footer>
     <a href="mailto:valentina.manferrari@mail.utoronto.ca?subject=Bug Found&body=I found the following bug on your website"
       target="_blank">valentina.manferrari@mail.utoronto.ca</a>
   </footer>
+
 </body>
 
 </html>
