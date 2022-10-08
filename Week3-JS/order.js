@@ -3,12 +3,12 @@
     the order.html page and we want to show the total costs of the items a user selects. 
     Select the <div> block with "info-msg" class:
 */
-let info_box = 
-
+let info_box = document.querySelectorAll('div.info-msg')[0];
+console.log(info_box);
 /* TODO: Select all <input> elements withing the <div> block that has the class "item-selection"
 */
-const item_checkboxes = 
-
+const item_checkboxes = document.getElementById('item-selection').getElementsByTagName('input');
+console.log(item_checkboxes);
 /* TODO: We want to show a message like: "hey USER! The total cost is: $80." in the 
     info_box element when a user selects some items. You need to calculate the total
     cost based on the user's selections. Replace the USER in the message above with 
@@ -16,8 +16,11 @@ const item_checkboxes =
     entered, change it to a blank (i.e. "")
 */
 let total_price = 0
+var p = document.createElement("p");
+p.innerHTML = 'hey USER!';
+info_box.append(p);
 // You need to iterate through all checkboxes
-for ( ){
+for (let i = 0; i < item_checkboxes.length; i++){
   /* Define an event listener for each checkbox (when a user selects an item or 
     deselects it, the message should be updated with the new total cost). Steps:
       1. Define the event listener for each checkbox
@@ -29,7 +32,17 @@ for ( ){
       6. Update the message in the info-msg block with the updated total cost and 
           user's name. Something like: "hey USER! The total cost is: $80."
     */
-  this_checkbox.onclick = function(){
-    
+  item_checkboxes[i].onclick = function(){
+    info_box.style.display = 'block';
+    let cost = document.querySelectorAll('span.price')[i].innerHTML;
+    cost = cost.replace("$", "");
+    if (item_checkboxes[i].checked){
+      total_price = total_price + cost*1;
+    }else{
+      total_price = total_price - cost*1;
+    }
+    const customer_name = document.getElementById("name");
+    console.log(customer_name);
+    info_box.textContent = "Hey " + customer_name.value + "! The total costs is: $" + total_price;
   }
 }
