@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<script src="jquery-3.6.1.js"></script>
+	<script src="model.js"> </script>
+	<script src="controller.js"> </script>
+	<style>
+		.notification {
+			color: red;
+		}
+
+		table,
+		th,
+		td {
+			border: 2px solid black;
+			border-collapse: collapse;
+		}
+
+		#data {
+			margin-left: auto;
+			margin-right: auto;
+			width: 30%;
+			text-align: center;
+		}
+	</style>
+	<title>CSC309 Assignment 2</title>
+</head>
+
+<body>
+	<section>
+		<h1> Can you validate me? </h1>
+
+		<form onsubmit="return false">
+			<label>Username: <input type="text" id="username"></label>
+			<p class="notification" id="username_notification"> </p>
+
+			<label>Password: <input type="password" id="password1"></label>
+			<p class="notification" id="password1_notification"> </p>
+
+			<label>Repeat Password: <input type="password" id="password2"></label>
+			<p class="notification" id="password2_notification"> </p>
+
+			<label>Email: <input type="text" id="email"></label>
+			<p class="notification" id="email_notification"> </p>
+
+			<label>Phone: <input type="text" id="phone"></label>
+			<p class="notification" id="phone_notification"> </p>
+
+			<input type="submit" value="Register" id="register">
+			<p class="notification" id="notification"> </p>
+		</form>
+	</section>
+
+	<hr>
+
+	<section>
+		<h1> First day at Amazon </h1>
+
+		<label>Name: <input type="text" id="name"></label><br>
+		<label>Price: <input type="number" id="price"></label><br>
+		<label>Quantity: <input type="number" id="quantity"></label><br>
+		<button id="add_update_item">Add/Update Item</button><br><br>
+
+		<table id="cart-items">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody> </tbody>
+		</table>
+
+		<p>Subtotal: <b id="subtotal">0.00</b></p>
+		<p>Taxes: <b id="taxes">0.00</b></p>
+		<p>Grand Total: <b id="grand_total">0.00</b></p>
+	</section>
+
+	<hr>
+
+	<section>
+		<h1> Scroll to death </h1>
+
+		<div id="data"> </div>
+	</section>
+</body>
+
+</html>
