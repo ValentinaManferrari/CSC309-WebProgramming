@@ -204,16 +204,15 @@ $( document ).ready(function() {
         // get fields values
         let name = document.getElementById('name').value;
         name = name.replace(/\s+/g, '_'); // replace spaces with underscores in product name
-        let price = Number(document.getElementById('price').value).toFixed(2);
-        let quantity = Number(document.getElementById('quantity').value).toFixed(0);
+        let price = document.getElementById('price').value;
+        let quantity = document.getElementById('quantity').value;
         // if any field is empty skip button action
-        if(name == "" || price == "" || quantity == ""){
+        if(name === "" || price === "" || quantity === ""){
             return;
         }
         // create new item object with retrieved inputs
         item = new Item(name, price, quantity);
         item.total = Number(item.total).toFixed(2);
-
         // update item in table if it already exist
         if(itemsList.find(item => item.name === name)){
             // update item values in list
@@ -221,18 +220,15 @@ $( document ).ready(function() {
             old_item.price = item.price;
             old_item.quantity = item.quantity;
             // update subtotal, taxes and grand total
-            totals(old_item.total, "delete");
             old_item.total = item.total;
-            totals(old_item.total, "update");
-
+            totals();
             // display new values in table
             var row = document.getElementById(old_item.name);
             row.getElementsByTagName("td")[1].innerHTML = old_item.price;
             row.getElementsByTagName("td")[2].innerHTML = old_item.quantity;
             row.getElementsByTagName("td")[3].innerHTML = old_item.total;
-            
         }
-        // add new tem in table if it has a new name
+        // add new item in table if it has a new name
         else{ 
             // add new item to itemList
             itemsList.push(item);
@@ -257,7 +253,7 @@ $( document ).ready(function() {
             var minusButton = document.createElement("button");
             minusButton.type = "button";
             minusButton.setAttribute("class", "decrease");
-            minusButton.setAttribute("onclick", "decrease("+item.name+")");
+            minusButton.setAttribute("onclick", "decrease("+JSON.stringify(item.name)+")");
             minusButton.innerHTML ="-";
             minusCell.appendChild(minusButton);
             // create button for increase quantity
@@ -265,7 +261,7 @@ $( document ).ready(function() {
             var plusButton = document.createElement("button");
             plusButton.type = "button";
             plusButton.setAttribute("class","increase");
-            plusButton.setAttribute("onclick", "increase("+item.name+")");
+            plusButton.setAttribute("onclick", "increase("+JSON.stringify(item.name)+")");
             plusButton.innerHTML ="+";
             plusCell.appendChild(plusButton);
             // create button for deleting table row
@@ -273,33 +269,23 @@ $( document ).ready(function() {
             var deleteButton = document.createElement("button");
             deleteButton.type = "button";
             deleteButton.setAttribute("class","delete");
-            deleteButton.setAttribute("onclick", "deleteRow("+item.name+")");
+            deleteButton.setAttribute("onclick", "deleteRow("+JSON.stringify(item.name)+")");
             deleteButton.innerHTML ="delete";
             deleteCell.appendChild(deleteButton);
             // calculate subtotal, taxtes and grand total 
-            totals(item.total, "add");
+            totals();
         }
     }
 }); 
 // function to calculate and display subtotal, taxes and grand total 
-function totals(amount, change_type){
+function totals(){
     // convert current values from strings to numbers
-    let subtotal = Number(document.getElementById("subtotal").innerHTML);
-    let taxes = Number(document.getElementById("taxes").innerHTML);
-    let grand_total = Number(document.getElementById("grand_total").innerHTML);
-    amount = Number(amount);
-    // based on change_type keyword select which action to take
-    if(change_type == "decrease"){
-        subtotal = subtotal - amount;
-
-    }else if(change_type == "increase"){
-        subtotal = subtotal + amount;
-        
-    }else if(change_type == "delete"){
-        subtotal = subtotal - amount;
-
-    }else{ // change_type == add/update
-        subtotal = subtotal + amount;
+    let subtotal = 0;
+    let taxes = 0;
+    let grand_total = 0;
+    
+    for(i=0; i<itemsList.length; i++){
+        subtotal += Number(itemsList[i].total);
     }
     taxes = subtotal * (0.13); // taxes are 13%
     grand_total = subtotal + taxes; 
@@ -310,7 +296,7 @@ function totals(amount, change_type){
 }
 // function to decrease quantity given an item name/id (also updates item values in itemList)
 function decrease(name){
-    var item = itemsList.filter(item => item.name === name.id)[0];
+    var item = itemsList.filter(item => item.name === name)[0];
     // decrease quantity only if it is not already zero
     if(item.quantity > 0){
         // decrease quantity by one and display new value in table cell
@@ -322,12 +308,12 @@ function decrease(name){
         var totalCell = document.getElementById(item.name).getElementsByTagName("td")[3];
         totalCell.innerHTML = item.total;
         // adjust overall totals and display values
-        totals(Number(item.price), "decrease");
+        totals();
     }
 }
 // function to increase quantity given an item name/id (also updates item values in itemList)
 function increase(name){
-    var item = itemsList.filter(item => item.name === name.id)[0];
+    var item = itemsList.filter(item => item.name === name)[0];
     // increase quantity by one and display new value in table cell
     item.quantity = Number(item.quantity) + 1;
     var quantityCell = document.getElementById(item.name).getElementsByTagName("td")[2];
@@ -337,18 +323,18 @@ function increase(name){
     var totalCell = document.getElementById(item.name).getElementsByTagName("td")[3];
     totalCell.innerHTML = item.total;
     // adjust overall totals and display values
-    totals(Number(item.price), "increase");
+    totals();
 }
 // function to delete table row given an item name/id (also updates item values in itemList)
 function deleteRow(name){
     // delete row in table
-    var item = itemsList.filter(item => item.name === name.id)[0];
-    var table = document.getElementById('cart-items').getElementsByTagName('tbody')[0];
-    table.deleteRow(item.name);
+    row = document.getElementById(name);
+    row.remove();
     // delete item from itemList
-    itemsList.splice(item, 1);
+    const indexOfItem = itemsList.findIndex(item => item.name === name);   
+    itemsList.splice(indexOfItem, 1);
     // adjust overall totals and display values
-    totals(Number(item.total), "delete");
+    totals();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
