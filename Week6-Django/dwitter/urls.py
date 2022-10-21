@@ -14,14 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
+# from django.contrib import admin
 from django.urls import path, include
-from dwitter.apps.accounts import views as accounts_views  # ADDITION: import accounts_views
+# from dwitter.apps.accounts import views as accounts_views  # ADDITION: import accounts_views
 from dwitter.apps.tweets import views as tweets_views  # ADDITION: import tweets_views
 
 urlpatterns = [
     # ADDITION: link admin site to the admin/ path
     # ADDITION: include the default auth urls to accounts/ path
+    path("accounts/", include("django.contrib.auth.urls")),
     # ADDITION: add the signup url to accounts/signup/ path
     # ADDITION: add the index url to the root path
 ]

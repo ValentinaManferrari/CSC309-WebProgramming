@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-{% comment %} ADDITION: generic form implementation here {% endcomment %}
+<!-- block for form header to extend in other templates-->
+{% block form_header %} {% endblock %} 
+<form method="post" action="{{ action }}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}

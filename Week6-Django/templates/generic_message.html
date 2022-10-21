@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 {% block page_content %}
-{% comment %} ADDITION: content display here {% endcomment %}
+{% if content %} 
+    <p>{{ content }}</p>
+{% else %}
+    {% block content %} {% endblock %}
+{% endif %}
 {% endblock %}

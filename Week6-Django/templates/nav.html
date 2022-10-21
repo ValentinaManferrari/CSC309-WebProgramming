@@ -5,6 +5,15 @@
         {% comment %} FUTURE ADDITION: links to other pages {% endcomment %}
         <div class="d-flex my-1 ms-auto">
             {% comment %} ADDITION: check whether the user is logged in and show login/ <username>|logout {% endcomment %}
-        </div>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">{{ user.username }}</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
+            </div>
     </div>
 </nav>
