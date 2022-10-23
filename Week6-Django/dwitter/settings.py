@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party apps
     # ADD 3rd party apps here (like in the future we will add 'rest_framework')
-    'django.contrib.auth',
+    
     # Local apps
     # ADD local apps here (like in the future we will add 'tweets')
     "dwitter.apps.accounts",  # ADDITION: add accounts app
