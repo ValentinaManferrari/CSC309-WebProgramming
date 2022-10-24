@@ -203,8 +203,6 @@ This template will render the content of the `content` variable in the context, 
     ...
     ```
 
-    You should also provide a mail backend to send the emails. You can use the [django.core.mail](https://docs.djangoproject.com/en/4.1/topics/email/#module-django.core.mail) module to send emails. For now we will just print the email to the console, using `django.core.mail.backends.console.EmailBackend`, by setting the `EMAIL_BACKEND` variable in the `settings.py` file to `django.core.mail.backends.console.EmailBackend`. You can find more information about the `EMAIL_BACKEND` variable [here](https://docs.djangoproject.com/en/4.1/topics/email/#email-backends).
-
 5. **Password Reset Done**: Create the password reset done page template in `templates/registration/password_reset_done.html` either by extending your generic_message template or from scratch. 
 
 6. **Password Reset Confirm**: Create the password reset confirmation page template in `templates/registration/password_reset_confirm.html` either by extending your generic_form template or from scratch. In addition to the `form` and `action` context variables, a `validlink` context variable is also provided. You can use this variable to show a message if the link is not valid, or to show the form if the link is valid.

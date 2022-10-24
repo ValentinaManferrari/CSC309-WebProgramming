@@ -14,26 +14,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-# from django.contrib import admin
-from django.urls import path, include
-# from dwitter.apps.accounts import views as accounts_views  # ADDITION: import accounts_views
-from dwitter.apps.tweets import views as tweets_views  # ADDITION: import tweets_views
+from django.contrib import admin
+from django.urls import path
+from django.urls import include  # ADDITION
+from dwitter.apps.accounts import views as accounts_views  # ADDITION
+from dwitter.apps.tweets import views as tweets_views  # ADDITION
+
+# we can use the include function to include the urls from another app
+# we connect the urls from django's authentication system to our app by including the urls from django.contrib.auth.urls
+# by adding:
+#     path("accounts/", include("django.contrib.auth.urls")),
+# all the urls from django auth system will be available at /accounts/ (so for example the login page will be at /accounts/login/)
+# see https://docs.djangoproject.com/en/4.1/topics/auth/default/#module-django.contrib.auth.views for more info
+
+# we connect the signup view to the /accounts/signup/ url by adding:
+#     path("accounts/signup/", accounts_views.signup, name="signup"),
+# by naming the url "signup", we can use {% url "signup" %} in our templates to get the url for the signup page (see templates/regiration/login.html)
+
+# we connect the index view to the root url by adding:
+#     path("", tweets_views.index, name="index"),
+
+# we connect the admin view to the /admin/ url by adding:
+#     path("admin/", admin.site.urls),
+# admin configurations are definend in dwitter/apps/*/admin.py files
 
 urlpatterns = [
-    # ADDITION: link admin site to the admin/ path
-
-    # ADDITION: include the default auth urls to accounts/ path
-    path("accounts/", include("django.contrib.auth.urls")),
-    # accounts/login/ [name='login']
-    # accounts/logout/ [name='logout']
-    # accounts/password_change/ [name='password_change']
-    # accounts/password_change/done/ [name='password_change_done']
-    # accounts/password_reset/ [name='password_reset']
-    # accounts/password_reset/done/ [name='password_reset_done']
-    # accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
-    # accounts/reset/done/ [name='password_reset_complete']
-
-    # ADDITION: add the signup url to accounts/signup/ path
-    
-    # ADDITION: add the index url to the root path
+    path("admin/", admin.site.urls),
+    # user urls
+    path("accounts/", include("django.contrib.auth.urls")),  # ADDITION: include the default auth urls
+    path("accounts/signup/", accounts_views.SingUpFormView.as_view(), name="signup"),  # ADDITION: add the signup url
+    path("", tweets_views.index, name="index"),  # ADDITION: add the index url
 ]
+

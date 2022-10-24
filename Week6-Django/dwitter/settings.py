@@ -16,7 +16,7 @@ import os  # ADDITION: to read environment variables
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-print("base dir", BASE_DIR)
+print("base dir", BASE_DIR) 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -43,11 +43,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party apps
     # ADD 3rd party apps here (like in the future we will add 'rest_framework')
-    
+    "widget_tweaks",  # ADDITION (for stylizing form template tags)
     # Local apps
     # ADD local apps here (like in the future we will add 'tweets')
-    "dwitter.apps.accounts",  # ADDITION: add accounts app
-    "dwitter.apps.tweets",  # ADDITION: add tweets app
+    "dwitter.apps.accounts",  # ADDITION
 ]
 
 LOGIN_REDIRECT_URL = '/' # ADDITION: redirect to home page after login

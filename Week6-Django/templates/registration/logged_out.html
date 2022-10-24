@@ -1,5 +1,6 @@
-{% extends "generic_message.html" %}
-{% url 'login' %}
+{% extends "generic_message.html" %} 
 
-{% comment %} OPTIONAL: {% extends "generic_message.html" %} {% endcomment %}
-{% comment %} ADDITION:  {% endcomment %}
+{% block content %}
+  <p>Logged out!</p>
+  <a href="{% url 'login'%}">Click here to login again.</a>
+{% endblock %}
