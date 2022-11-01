@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bank Details</title>
-</head>
-<body>
-    <h1>{{ bank.name }}</h1>
-    <ul>
-        <li>Swift Code: {{ bank.swift }}</li>
-        <li>Institution Number: {{ bank.inst_num }}</li>
-        <li>Description: {{ bank.description }}</li>
-    </ul>
-</body>
-</html>
+{% extends "banks/header.html" %}
+
+{% block content %}
+
+<h1>{{ bank.name }}</h1>
+<br>
+<ul>
+    <li>Swift Code: {{ bank.swift }}</li>
+    <li>Institution Number: {{ bank.inst_num }}</li>
+    <li>Description: {{ bank.description }}</li>
+</ul>
+
+{% endblock %}

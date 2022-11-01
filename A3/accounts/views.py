@@ -1,23 +1,24 @@
 from urllib import request
 from django.shortcuts import  render, redirect
-from accounts.forms import NewUserForm, EditUserForm
+from accounts.forms import RegisterForm, EditUserForm, LoginForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from django.contrib.auth.models import User
-import json
 
 def homepage(request):
 	return render(request=request, template_name='accounts/home.html')
 
+# # # # # AS SIMPLE AS AUTH # # # # #
+
 def register_request(request):
 	if request.method == "GET":
-		form = NewUserForm()
+		form = RegisterForm()
 		return render (request=request, template_name="accounts/register.html", context={"register_form":form})
 	if request.method == "POST":
-		form = NewUserForm(request.POST)
+		form = RegisterForm(request.POST)
 		if form.is_valid():
 			form.save()
 			messages.success(request, "Registration successful." )
@@ -27,10 +28,10 @@ def register_request(request):
 	
 def login_request(request):
 	if request.method == "GET":
-		form = AuthenticationForm()
+		form = LoginForm()
 		return render(request=request, template_name="accounts/login.html", context={"login_form":form})
 	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
+		form = LoginForm(request, data=request.POST)
 		if form.is_valid():
 			username = form.cleaned_data.get('username')
 			password = form.cleaned_data.get('password')
@@ -41,10 +42,10 @@ def login_request(request):
 				return HttpResponseRedirect(f"/accounts/profile/view/")
 			else:
 				messages.error(request,"Username or password is invalid")
-				return redirect("accounts:login")
+				return render (request=request, template_name="accounts/login.html", context={"login_form":form})
 		else:
 			messages.error(request,"Username or password is invalid")
-			return redirect("accounts:login")
+			return render (request=request, template_name="accounts/login.html", context={"login_form":form})
 	
 def logout_request(request):
 	if request.method == "GET":
@@ -63,7 +64,7 @@ def view_profile(request):
 		response_data['email'] = request.user.email
 		response_data['first_name'] = request.user.first_name
 		response_data['last_name'] = request.user.last_name
-		return HttpResponse(json.dumps(response_data), content_type="application/json")
+		return JsonResponse(response_data)
 	else:
 		return HttpResponse('Unauthorized', status=401)
 

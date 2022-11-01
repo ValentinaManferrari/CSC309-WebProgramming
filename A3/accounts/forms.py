@@ -1,13 +1,13 @@
 from asyncio.windows_events import NULL
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import authenticate
 
-# Create your forms here.
+# # # # # AS SIMPLE AS AUTH # # # # #
 
-class NewUserForm(UserCreationForm):
-	# UserCreationForm
+class RegisterForm(UserCreationForm):
 	email = forms.EmailField(required=False)
 	first_name = forms.CharField(label=_("First name"), max_length=120, required=False)
 	last_name = forms.CharField(label=_("Last name"), max_length=120, required=False)
@@ -37,13 +37,19 @@ class NewUserForm(UserCreationForm):
 		}
 
 	def save(self, commit=True):
-		user = super(NewUserForm, self).save(commit=False)
+		user = super(RegisterForm, self).save(commit=False)
 		user.email = self.cleaned_data['email']
 		user.first_name = self.cleaned_data['first_name']
 		user.last_name = self.cleaned_data['last_name']
 		if commit:
 			user.save()
 		return user
+
+class LoginForm(AuthenticationForm):
+	error_messages = {
+		'invalid_login': _("Username or password is invalid"),
+	}
+
 
 # # # # # PROFILERS # # # # #
 

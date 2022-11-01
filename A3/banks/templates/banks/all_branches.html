@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Branches List</title>
-</head>
-<body>
-    <h1>List of Branches</h1>
-    <ul>
-        {% for branch in branches %}
-            <li>{{ branch.name }} <br>
-            </ul>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "banks/header.html" %}
+
+{% block content %}
+
+<h1>List of Branches</h1>
+<br>
+<ul>
+    {% for branch in branches %}
+    <li>{{ branch.name }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

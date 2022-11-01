@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Branch</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="register">
-     </form>
-</body>
-</html>
+{% extends "banks/header.html" %}
+
+{% block content %}
+
+<h1>Add New Branch</h1>
+<br>
+<form method="post">
+    <!-- {% csrf_token %} -->
+    {{ form.as_p }}
+    <input type="submit" value="register">
+</form>
+
+{% endblock %}
