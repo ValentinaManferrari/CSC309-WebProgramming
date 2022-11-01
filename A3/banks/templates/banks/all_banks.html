@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banks List</title>
+</head>
+<body>
+    <h1>List of Banks</h1>
+    <ul>
+        {% for bank in banks %}
+            <li>{{ bank.id }} - {{ bank.name }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
