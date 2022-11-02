@@ -12,29 +12,34 @@ class RegisterForm(UserCreationForm):
 	first_name = forms.CharField(label=_("First name"), max_length=120, required=False)
 	last_name = forms.CharField(label=_("Last name"), max_length=120, required=False)
 
-	error_messages = {
-        'password_mismatch': "The two password fields didn't match",
-    }
+	def __init__(self, *args, **kwargs):
+		super(RegisterForm, self).__init__(*args, **kwargs)
+		for fieldname in ['username', 'password1', 'password2']:
+			self.fields[fieldname].help_text = None
 
 	class Meta:
 		model = User
 		fields = ("username", "password1", "password2", "email", "first_name", "last_name")
 		error_messages = {
 			'username': {
-                'unique': "A user with that username already exists",
+				'unique': "A user with that username already exists",
 				'required': "This field is required",
-            },
+			},
 			'password1': {
 				'min_length': "This password is too short. It must contain at least 8 characters",
 				'required': "This field is required",
-            },
+			},
 			'password2': {
 				'required': "This field is required",
-            },
+			},
 			'email':{
 				'invalid': "Enter a valid email address",
 			}
 		}
+
+	error_messages = {
+        'password_mismatch': "The two password fields didn't match",
+    }
 
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
@@ -60,21 +65,18 @@ class EditUserForm(forms.ModelForm):
 	password1 = forms.CharField(widget=forms.PasswordInput, required=False)
 	password2 = forms.CharField(widget=forms.PasswordInput, required=False)
 	
-	error_messages = {
-        'password_mismatch': "The two password fields didn't match",
-    }
-	
 	class Meta:
 		model = User
 		fields = ("first_name", "last_name", "email", "password1", "password2")
-		error_messages = {
-			'password1': {
-				'min_length': "This password is too short. It must contain at least 8 characters",
-			},
-			'email':{
-				'invalid': "Enter a valid email address",
-			}
-		}
+		# error_messages = {
+		# 	'password_mismatch': "The two password fields didn't match",
+		# 	'password1': {
+		# 		'min_length': "This password is too short. It must contain at least 8 characters",
+		# 	},
+		# 	'email':{
+		# 		'invalid': "Enter a valid email address",
+		# 	}
+		# }
 
 	def clean(self):
 		data = super().clean()

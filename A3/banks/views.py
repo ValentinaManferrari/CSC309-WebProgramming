@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 # Create your views here.
 def homepage(request):
-	return render(request=request, template_name='bank/home.html')
+	return render(request=request, template_name='bank/header.html')
 
 # # # # # IF YOU KNOW FORMS, YOU KNOW # # # # #
 
@@ -16,31 +16,63 @@ class AddBank(FormView):
 	template_name = 'banks/add_bank.html'
 	form_class = AddBankForm
 
+	# def get(self, request, *args, **kwargs):
+	# 	form = AddBankForm()
+	# 	context = {'bank_form': form}
+	# 	if self.request.user.is_anonymous:
+	# 		return HttpResponse('401 UNAUTHORIZED', status=401)
+	# 	return render(request, 'banks/add_bank.html', context)
+		
 	def form_valid(self, form):
-		newBank = Bank.objects.create(
-			owner = self.request.user,
-			name = form.cleaned_data['name'],
-            description = form.cleaned_data['description'],
-			inst_num = form.cleaned_data['inst_num'],
-			swift = form.cleaned_data['swift']
-		)
-		return HttpResponseRedirect(f"/banks/{newBank.id}/details/")
-
+		if not self.request.user.is_anonymous:
+			newBank = Bank.objects.create(
+				owner = self.request.user,
+				name = form.cleaned_data['name'],
+				description = form.cleaned_data['description'],
+				inst_num = form.cleaned_data['inst_num'],
+				swift_code = form.cleaned_data['swift_code']
+			)
+			return HttpResponseRedirect(f"/banks/{newBank.id}/details/")
+		else:
+			return HttpResponse('401 UNAUTHORIZED', status=401)
 
 class AddBranch(FormView):
 	template_name = 'banks/add_branch.html'
 	form_class = AddBranchForm
 
+	# def get(self, request, *args, **kwargs):
+	# 	form = AddBranchForm()
+	# 	context = {'branch_form': form}
+	# 	if self.request.user.is_anonymous:
+	# 		return HttpResponse('401 UNAUTHORIZED', status=401)
+	# 	try:
+	# 		bank_obj = Bank.objects.get(pk = self.kwargs['bank_id'])
+	# 	except Bank.DoesNotExist:
+	# 		return HttpResponse('404 NOT FOUND', status=404)
+	# 	if self.request.user != bank_obj.owner:
+	# 		return HttpResponse('403 FORBIDDEN', status=401)
+	# 	return render(request, 'banks/add_branch.html', context)
+
 	def form_valid(self, form):
-		newBranch = Branch.objects.create(
-			bank = Bank.objects.get(pk = self.kwargs['bank_id']),
-			name = form.cleaned_data['name'],
-            transit_num = form.cleaned_data['transit_num'],
-			address = form.cleaned_data['address'],
-			email = form.cleaned_data['email'],
-			capacity = form.cleaned_data['capacity']
-		)
-		return HttpResponseRedirect(f"/banks/branch/{newBranch.id}/details/")
+		if self.request.user.is_anonymous:
+			return HttpResponse('401 UNAUTHORIZED', status=401)	
+		try:
+			bank_obj = Bank.objects.get(pk = self.kwargs['bank_id'])
+		except Bank.DoesNotExist:
+			return HttpResponse('404 NOT FOUND', status=404)
+
+		if self.request.user == bank_obj.owner:
+			newBranch = Branch.objects.create(
+				bank = bank_obj,
+				name = form.cleaned_data['name'],
+				transit_num = form.cleaned_data['transit_num'],
+				address = form.cleaned_data['address'],
+				email = form.cleaned_data['email'],
+				capacity = form.cleaned_data['capacity']
+			)
+			return HttpResponseRedirect(f"/banks/branch/{newBranch.id}/details/")
+		else:
+			return HttpResponse('403 FORBIDDEN', status=403)				
 
 # # # # # WRONG CRAWD # # # # #
 
@@ -65,7 +97,6 @@ class BankDetails(DetailView):
 # # # # # JSON IS BETTER # # # # #
 
 class BranchDetails(DetailView):
-
 	def get_object(self, **kwargs):
 		try:
 			branch = Branch.objects.get(pk=self.kwargs['branch_id'])
@@ -88,14 +119,18 @@ class BranchDetails(DetailView):
 
 class BranchViewAll(ListView):
 	def get_queryset(self, **kwargs):
-		return Branch.objects.filter(bank__id__contains=self.kwargs['bank_id'])
-
+		try:
+			branches = Branch.objects.filter(bank__id__contains=self.kwargs['bank_id'])
+		except Branch.DoesNotExist:
+			raise Http404()
+		return branches
+	
 	def get(self, request, *args, **kwargs):
 		queryset = self.get_queryset()
 		list = []
 		for obj in queryset:
 			data = {}
-			# data["id"] = self.kwargs['branch_id']
+			data["id"] = obj.pk
 			data["name"] = obj.name
 			data["transit_num"] = obj.transit_num
 			data["address"] = obj.address
@@ -103,4 +138,5 @@ class BranchViewAll(ListView):
 			data["capacity"] = obj.capacity
 			data["last_modified"] = str(obj.last_modified)
 			list.append(data)
-		return JsonResponse(list)
+		return JsonResponse(list, safe=False)
+

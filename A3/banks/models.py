@@ -12,7 +12,7 @@ class Bank(models.Model):
     name = models.CharField(max_length=200, null=False)
     description = models.TextField(max_length=200, null=False)
     inst_num = models.CharField(max_length=200, null=False)
-    swift = models.CharField(max_length=200, null=False)
+    swift_code = models.CharField(max_length=200, null=False)
 
     def __str__(self):
         return str({self.name})
@@ -23,7 +23,7 @@ class Branch(models.Model):
     transit_num = models.CharField(max_length=200, null=False)
     address = models.CharField(max_length=200, null=False)
     email = models.EmailField(max_length=200, default='admin@utoronto.ca')
-    capacity = models.PositiveIntegerField(blank=True)
+    capacity = models.PositiveIntegerField(null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
