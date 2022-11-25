@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "2051306e-facb-4975-87b9-e9fc4d52592c",
+		"name": "Subscriptions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23897158"
+	},
+	"item": [
+		{
+			"name": "View All Subscription Choices For Each Studio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/view/all/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"view",
+						"all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Current Subscription",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MDU4NTA2LCJpYXQiOjE2Njg2MjY1MDYsImp0aSI6IjZhYTQyNGY4MjQxYTRmY2I4YzQyNmU5ZGQ2M2VlZTYxIiwidXNlcl9pZCI6MX0.n0RxDeZQv8FswPvfTJp1K-FC6AK2RXYqfIGe-tyXwQs",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/my_subscription/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"my_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Current Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MDU4NTA2LCJpYXQiOjE2Njg2MjY1MDYsImp0aSI6IjZhYTQyNGY4MjQxYTRmY2I4YzQyNmU5ZGQ2M2VlZTYxIiwidXNlcl9pZCI6MX0.n0RxDeZQv8FswPvfTJp1K-FC6AK2RXYqfIGe-tyXwQs",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "action",
+							"value": "update",
+							"type": "text"
+						},
+						{
+							"key": "plan",
+							"value": "y1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/my_subscription/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"my_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Current Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MDU4NTA2LCJpYXQiOjE2Njg2MjY1MDYsImp0aSI6IjZhYTQyNGY4MjQxYTRmY2I4YzQyNmU5ZGQ2M2VlZTYxIiwidXNlcl9pZCI6MX0.n0RxDeZQv8FswPvfTJp1K-FC6AK2RXYqfIGe-tyXwQs",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "action",
+							"value": "subscribe",
+							"type": "text"
+						},
+						{
+							"key": "plan",
+							"value": "m1",
+							"type": "text"
+						},
+						{
+							"key": "start_date",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/my_subscription/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"my_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Current Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MDU4NTA2LCJpYXQiOjE2Njg2MjY1MDYsImp0aSI6IjZhYTQyNGY4MjQxYTRmY2I4YzQyNmU5ZGQ2M2VlZTYxIiwidXNlcl9pZCI6MX0.n0RxDeZQv8FswPvfTJp1K-FC6AK2RXYqfIGe-tyXwQs",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "action",
+							"value": "cancel",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/my_subscription/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"my_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View All Payments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/payment/view/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"payment",
+						"view",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View All Cards",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/card/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"card",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "action",
+							"value": "add",
+							"type": "text"
+						},
+						{
+							"key": "card_num",
+							"value": "4111111111111111",
+							"type": "text"
+						},
+						{
+							"key": "card_holder_name",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "expire_date",
+							"value": "2022-12-20",
+							"type": "text"
+						},
+						{
+							"key": "cvc",
+							"value": "111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/card/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"card",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "action",
+							"value": "update",
+							"type": "text"
+						},
+						{
+							"key": "card_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "card_num",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "card_holder_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "expire_date",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "cvc",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/card/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"card",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "action",
+							"value": "delete",
+							"type": "text"
+						},
+						{
+							"key": "card_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/subscriptions/api/card/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"subscriptions",
+						"api",
+						"card",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

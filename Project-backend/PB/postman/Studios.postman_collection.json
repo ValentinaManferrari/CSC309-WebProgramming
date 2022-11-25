@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "561803da-ee59-4780-83ae-336a147a2fa4",
+		"name": "Studios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23897158"
+	},
+	"item": [
+		{
+			"name": "View Studio by Proximity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/studios/list_by_location/?latitude=43.66511259965256&longitude=-79.39474806189537&radius=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"studios",
+						"list_by_location",
+						""
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "43.66511259965256"
+						},
+						{
+							"key": "longitude",
+							"value": "-79.39474806189537"
+						},
+						{
+							"key": "radius",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Studio Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/studios/get_studio_page/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"studios",
+						"get_studio_page",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Studio with Filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/studios/search_studios/?name=Gym2&coach=Carter&class_name=Basket&amenity=Yoga Room",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"studios",
+						"search_studios",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Gym2"
+						},
+						{
+							"key": "coach",
+							"value": "Carter"
+						},
+						{
+							"key": "class_name",
+							"value": "Basket"
+						},
+						{
+							"key": "amenity",
+							"value": "Yoga Room"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

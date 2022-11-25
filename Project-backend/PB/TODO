@@ -1,0 +1,10 @@
+For submission
+ - Add postman.json file
+ - Add docs.pdf file  --> packages can be used to get API calls
+ - Test on clean VM that everything works
+
+
+Random:
+ - Add Studio Serializers for search viewws in the studio apps
+ - Add Subscriptions permissions for drop/enroll views
+ - fix "update class admin"

@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "c0e752b6-d3a0-48f6-b471-1cc99145cf56",
+		"name": "Accounts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23897158"
+	},
+	"item": [
+		{
+			"name": "Sign Up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "theTA",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12341234",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "12341234",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "11@as.com",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "TA",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "CSC309",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "123-456-7890",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.environment.set(\"token\", data.access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "theTA",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12341234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MjI1NDE0LCJpYXQiOjE2Njg3OTM0MTQsImp0aSI6Ijg4ODQwMWJlZWJjZTQ0NGU4MDYxNWE5ODI1YTY3ZDkyIiwidXNlcl9pZCI6MTB9.3X1ERkvR-uN2EPdE37Sk3S0ysEMh3MfgA08k4P9m47Q",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "theTA",
+							"type": "text"
+						},
+						{
+							"key": "old_password",
+							"value": "12341234",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123412345",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "123412345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/edit_profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"edit_profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MjI1NDE0LCJpYXQiOjE2Njg3OTM0MTQsImp0aSI6Ijg4ODQwMWJlZWJjZTQ0NGU4MDYxNWE5ODI1YTY3ZDkyIiwidXNlcl9pZCI6MTB9.3X1ERkvR-uN2EPdE37Sk3S0ysEMh3MfgA08k4P9m47Q",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "hello@csc309.ca",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "098-765-4321",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "csc309",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/edit_profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"edit_profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify JWT Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/verify_token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"verify_token",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
