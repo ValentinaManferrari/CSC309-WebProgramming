@@ -1,0 +1,20 @@
+.User {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font:inherit
+}
+.NavAvatar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserLinks{
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font:inherit
+}

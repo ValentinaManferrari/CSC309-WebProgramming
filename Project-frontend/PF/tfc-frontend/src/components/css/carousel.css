@@ -1,0 +1,28 @@
+.HomeImageSet{
+    position: fixed;
+    height: 600px;
+    width: 100%;
+}
+
+.HomeText{
+    height: 600px;
+    width: 100%;
+    margin-left:200px;
+}
+
+.slide-1{
+    background-image: url('../img/studio-2.png');
+}
+
+.slogan-1{
+    color: "white";
+    margin-top: 200px;
+    font-family: 'Lexend', sans-serif;
+}
+
+.button{
+    color: "white";
+    background: "white";
+    opacity: .9;
+    margin-top: 200px;
+}

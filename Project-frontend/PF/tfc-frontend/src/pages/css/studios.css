@@ -1,0 +1,12 @@
+.PageHeader{
+    overflow: auto;
+    margin-left: 300px;
+    position:fixed;
+    width: 2000px;
+    height: 200px;
+    top:120px;
+}
+
+.Result{
+    margin-left: 310px;
+}

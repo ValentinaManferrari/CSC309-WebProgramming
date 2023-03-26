@@ -1,0 +1,60 @@
+.navbar {
+    width: 100vw;
+    border-bottom: black solid 3px;
+    padding: 0px;
+  }
+  
+  .nav-item a {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 50px; 
+  }
+  .nav-link{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 120%;
+    color: #546e7a;
+    }
+
+    .nav-item a:hover {
+    color: black;
+    }
+
+    .navbar-brand img {
+    margin-left: 20px;
+    max-width: 200px;
+    padding-top: 0px;
+    }
+
+    .body_text {
+    font-size: 120%;
+    position: relative;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    letter-spacing: 0 !important;
+    text-align: justify;
+    }
+
+  .HeaderLogo{
+    height: 60px;
+    width: 60px;
+    margin-left: 40px;
+    margin-top: 15px;
+  }
+
+
+  .NavBar{
+    position: sticky;
+    top: 0;
+  }
+
+  .Menu{
+    z-index:10;
+  }
+
+
+

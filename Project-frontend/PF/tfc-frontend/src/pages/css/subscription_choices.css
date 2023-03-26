@@ -1,0 +1,25 @@
+.Header{
+    position:relative;
+    height: 460px;
+    z-index: -1;
+}
+
+.Choices{
+    height: 850px;
+    position: relative;
+}
+
+.choice{
+    height: 500px;
+    weight: 200px;
+}
+
+.Submit{
+    position: relative;
+    margin-top: 50px;
+}
+
+.noDataButton{
+    position: relative;
+    margin-top: 50px;
+}
